@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Denomination } from '../models/denomination';
@@ -17,7 +18,7 @@ export class AtmService {
 
   private atmServiceUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private messageService: MessageService) {
     this.atmServiceUrl = environment.atmServiceUrl;
     this.historyBS = new BehaviorSubject<string[]>([]);
     this.History$ = this.historyBS.asObservable();
@@ -46,8 +47,17 @@ export class AtmService {
     const sub = this.http.post<string>(this.atmServiceUrl + '/withdraw/' + requestedAmount, null,
       { headers, responseType: 'text' as 'json' })
       .subscribe(h => {
-        // send toast
+        this.messageService.add({severity: 'success', summary: 'Withdrawal', detail: h});
         this.GetHistories();
+        sub.unsubscribe();
+      });
+  }
+
+  public Restock(denominations: Denomination[]): void{
+    const sub = this.http.post<Denomination[]>(this.atmServiceUrl + '/restock', denominations)
+      .subscribe(d => {
+        this.messageService.add({severity: 'success', summary: 'Restock', detail: 'Restocked denominations'});
+        this.denominationBS.next(d);
         sub.unsubscribe();
       });
   }

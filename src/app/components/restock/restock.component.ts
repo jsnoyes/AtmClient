@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Denomination } from 'src/app/models/denomination';
+import { AtmService } from 'src/app/services/atm.service';
 
 @Component({
   selector: 'app-restock',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestockComponent implements OnInit {
 
-  constructor() { }
+  public restockDenominations: Denomination[];
+
+  constructor(private atmService: AtmService) {
+    this.restockDenominations = [
+      {denomination: 100, count: 0},
+      {denomination: 50, count: 0},
+      {denomination: 20, count: 0},
+      {denomination: 10, count: 0},
+      {denomination: 5, count: 0},
+      {denomination: 1, count: 0},
+    ];
+  }
 
   ngOnInit(): void {
   }
 
+  public restock(): void{
+    this.atmService.Restock(this.restockDenominations);
+  }
 }

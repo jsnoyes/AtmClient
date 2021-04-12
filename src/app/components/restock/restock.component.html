@@ -1,1 +1,20 @@
-<p>restock works!</p>
+<div>
+    <p-table [value]="restockDenominations">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Denomination</th>
+                <th>Count</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-denom>
+            <tr>
+                <td>${{denom.denomination}}</td>
+                <td><p-inputNumber [(ngModel)]="denom.count"></p-inputNumber></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<br />
+<div class="text-center">
+    <p-button label="Restock" (onClick)="restock()"></p-button>
+</div>
