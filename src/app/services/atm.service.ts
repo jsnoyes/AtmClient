@@ -58,7 +58,13 @@ export class AtmService {
     const sub = this.http.post<string>(this.atmServiceUrl + '/withdraw/' + requestedAmount, null,
       { headers, responseType: 'text' as 'json' })
       .subscribe(h => {
-        this.messageService.add({severity: 'success', summary: 'Withdrawal', detail: h});
+        let severity;
+        if ( h === 'Insufficient Funds'){
+          severity = 'error';
+        } else {
+          severity = 'success';
+        }
+        this.messageService.add({severity, summary: 'Withdrawal', detail: h});
         this.withdrawalProcessingBS.next(false);
         this.GetHistories();
         sub.unsubscribe();
