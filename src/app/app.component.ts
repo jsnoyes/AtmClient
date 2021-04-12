@@ -11,8 +11,7 @@ export class AppComponent {
   title = 'AtmClient';
   public MenuItems: MenuItem[];
 
-  constructor(private atmService: AtmService){
-    this.atmService.GetHistories();
+  constructor(){
     this.MenuItems = [
       {
           label: 'Overview',

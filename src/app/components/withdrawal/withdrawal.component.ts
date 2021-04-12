@@ -12,6 +12,7 @@ export class WithdrawalComponent implements OnInit {
 
   constructor(private atmService: AtmService) {
     this.requestedAmount = '';
+    this.atmService.GetHistories();
   }
 
   ngOnInit(): void {

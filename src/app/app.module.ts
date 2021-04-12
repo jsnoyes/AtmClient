@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {FormsModule} from '@angular/forms';
     DividerModule,
     PanelModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
