@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { AtmService } from './services/atm.service';
 
 @Component({
@@ -8,9 +9,27 @@ import { AtmService } from './services/atm.service';
 })
 export class AppComponent {
   title = 'AtmClient';
+  public MenuItems: MenuItem[];
 
   constructor(private atmService: AtmService){
     this.atmService.GetHistories();
+    this.MenuItems = [
+      {
+          label: 'Overview',
+          routerLink: ['/'],
+          icon: 'pi pi-home'
+      },
+      {
+          label: 'Withdraw',
+          routerLink: ['/withdraw'],
+          icon: 'pi pi-upload'
+      },
+      {
+          label: 'Restock',
+          icon: 'pi pi-download',
+          routerLink: ['/restock'],
+      }
+  ];
   }
 
 }

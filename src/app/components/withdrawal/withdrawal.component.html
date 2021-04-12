@@ -1,0 +1,16 @@
+<div class="p-grid p-ai-center">
+    <div class="p-col-8">
+        <div class="p-d-flex p-jc-center p-field">
+            <span class="p-float-label p-jc-center">
+                <input type="text" id="withdrawalBox" pInputText [(ngModel)]="requestedAmount"/>
+                <label style="align-items: center; justify-content: center;" for="withdrawalBox">Withdrawal Amount: </label>
+            </span>
+        </div>
+        <div class="text-center">
+            <p-button label="Withdraw" (onClick)="withdraw()"></p-button>
+        </div>
+    </div>
+    <div class="p-col-4">
+        <app-history></app-history>
+    </div>
+</div>

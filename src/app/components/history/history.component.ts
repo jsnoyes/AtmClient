@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AtmService } from 'src/app/services/atm.service';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HistoryComponent implements OnInit {
 
