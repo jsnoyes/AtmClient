@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AtmService } from 'src/app/services/atm.service';
 
 @Component({
@@ -8,10 +9,12 @@ import { AtmService } from 'src/app/services/atm.service';
 })
 export class WithdrawalComponent implements OnInit {
 
-  public requestedAmount: string;
+  public requestedAmount: number;
+  public withdrawalProcessing$: Observable<boolean>;
 
   constructor(private atmService: AtmService) {
-    this.requestedAmount = '';
+    this.withdrawalProcessing$ = this.atmService.WithdrawalProcessing$;
+    this.requestedAmount = 0;
     this.atmService.GetHistories();
   }
 
@@ -19,6 +22,7 @@ export class WithdrawalComponent implements OnInit {
   }
 
   public withdraw(): void{
-    this.atmService.Withdraw(parseInt(this.requestedAmount, 10));
+    this.atmService.Withdraw(this.requestedAmount);
+    this.requestedAmount = 0;
   }
 }
