@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  atmServiceUrl: 'https://localhost:44310'
+  atmServiceUrlMicro: 'https://localhost:44314',
+  atmServiceUrlSoa: 'https://localhost:44310'
 };
 
 /*

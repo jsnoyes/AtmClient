@@ -27,6 +27,11 @@ export class AppComponent {
           label: 'Restock',
           icon: 'pi pi-download',
           routerLink: ['/restock'],
+      },
+      {
+          label: 'Admin',
+          icon: 'pi pi-sliders-v',
+          routerLink: ['/admin'],
       }
   ];
   }

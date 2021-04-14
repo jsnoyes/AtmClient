@@ -20,6 +20,7 @@ import {TableModule} from 'primeng/table';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MessageService } from 'primeng/api';
     HistoryComponent,
     WithdrawalComponent,
     RestockComponent,
-    OverviewComponent
+    OverviewComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

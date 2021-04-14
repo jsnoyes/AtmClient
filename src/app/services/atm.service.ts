@@ -22,10 +22,14 @@ export class AtmService {
   public RestockProcessing$: Observable<boolean>;
   private restockProcessingBS: BehaviorSubject<boolean>;
 
-  private atmServiceUrl: string;
+  private atmServiceUrlMicro: string;
+  private atmServiceUrlSoa: string;
+  public atmServiceUrl: string;
 
   constructor(private http: HttpClient, private messageService: MessageService) {
-    this.atmServiceUrl = environment.atmServiceUrl;
+    this.atmServiceUrlMicro = environment.atmServiceUrlMicro;
+    this.atmServiceUrlSoa = environment.atmServiceUrlSoa;
+    this.atmServiceUrl = environment.atmServiceUrlSoa;
     this.historyBS = new BehaviorSubject<string[]>([]);
     this.History$ = this.historyBS.asObservable();
     this.denominationBS = new BehaviorSubject<Denomination[]>([]);
@@ -86,6 +90,11 @@ export class AtmService {
         this.messageService.add({severity: 'error', summary: 'Withdrawal', detail: e.error});
         this.restockProcessingBS.next(false);
       });
+  }
+
+  public ToggleBackendUrl(): string{
+    this.atmServiceUrl = this.atmServiceUrl === this.atmServiceUrlMicro ? this.atmServiceUrlSoa : this.atmServiceUrlMicro;
+    return this.atmServiceUrl;
   }
 
 }
